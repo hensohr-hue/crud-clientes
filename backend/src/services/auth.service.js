@@ -72,10 +72,13 @@ async function criarUsuario({ usuario, nome, senha }) {
 }
 
 // Na primeira execução (sem usuários cadastrados), cria o usuário de demonstração.
+// A senha pode ser definida pela variável de ambiente ADMIN_SENHA (ex.: na hospedagem).
 async function garantirUsuarioPadrao() {
   const usuarios = await repository.lerTodos();
   if (usuarios.length) return null;
-  return criarUsuario({ usuario: 'admin', senha: 'admin123', nome: 'Administrador' });
+  const senha = process.env.ADMIN_SENHA || 'admin123';
+  const criado = await criarUsuario({ usuario: 'admin', senha, nome: 'Administrador' });
+  return { ...criado, senhaPadrao: !process.env.ADMIN_SENHA };
 }
 
 module.exports = { login, logout, validarToken, criarUsuario, garantirUsuarioPadrao, gerarHash };

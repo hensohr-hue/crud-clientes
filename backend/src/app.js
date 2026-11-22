@@ -18,6 +18,9 @@ app.use((req, res, next) => {
   next();
 });
 
+// Verificação de saúde usada pela hospedagem (Render) para saber se o servidor está no ar.
+app.get('/health', (req, res) => res.json({ status: 'ok' }));
+
 app.use('/auth', authRoutes);
 // Todas as rotas de clientes exigem login.
 app.use('/clientes', autenticar, clientesRoutes);

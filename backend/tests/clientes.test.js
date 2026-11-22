@@ -181,3 +181,9 @@ test('POST /auth/logout encerra a sessão (204) e o token deixa de valer (401)',
   const depois = await fetchAuth(base);
   assert.strictEqual(depois.status, 401);
 });
+
+test('GET /health responde sem login (200)', async () => {
+  const resp = await fetch(`${raiz}/health`);
+  assert.strictEqual(resp.status, 200);
+  assert.deepStrictEqual(await resp.json(), { status: 'ok' });
+});

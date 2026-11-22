@@ -1,0 +1,19 @@
+# Configuração para publicar no Render (render.com) como Blueprint.
+# O Render instala as dependências da pasta backend e inicia o servidor Express,
+# que também entrega o front-end. A porta é definida pelo próprio Render (variável PORT).
+services:
+  - type: web
+    name: crud-clientes
+    runtime: node
+    plan: free
+    rootDir: backend
+    buildCommand: npm ci
+    startCommand: npm start
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      # Opcional: defina no painel do Render para trocar a senha do admin (padrão: admin123).
+      - key: ADMIN_SENHA
+        sync: false

@@ -30,6 +30,26 @@ npm start
 Abra **http://localhost:3001** e entre com **admin** / **admin123**.
 Na primeira execução o sistema cria esse usuário e carrega 3 clientes fictícios automaticamente.
 
+> **Importante:** o GitHub guarda o código, mas não executa o servidor. O endereço `localhost:3001`
+> é o próprio computador: ele só abre enquanto o servidor estiver rodando na sua máquina
+> (janela do `iniciar.bat` ou `npm start` aberta). Para um link público, publique no Render (abaixo).
+
+## Sistema online (Render)
+
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/hensohr-hue/crud-clientes)
+
+O arquivo [`render.yaml`](render.yaml) já traz a configuração: o Render instala as dependências da pasta
+`backend` (`npm ci`), inicia o servidor (`npm start`) e verifica a rota `/health`.
+
+1. Crie uma conta gratuita em [render.com](https://render.com) entrando com o GitHub.
+2. Clique no botão **Deploy to Render** acima (ou **New → Blueprint** e escolha este repositório).
+3. Em `ADMIN_SENHA`, digite uma senha para o usuário `admin` (ou deixe vazio para usar `admin123`).
+4. Clique em **Apply**. Em poucos minutos o sistema fica disponível em um endereço `https://...onrender.com`.
+
+Limitações do plano gratuito: o servidor "dorme" após 15 minutos sem acesso (o primeiro acesso depois
+disso demora cerca de 1 minuto) e, a cada reinício, os clientes voltam aos dados de exemplo e as sessões
+são encerradas, pois o disco do Render não é permanente. Para uso real, seria necessário um banco de dados.
+
 ## Tecnologias utilizadas
 
 | Camada | Tecnologia | Uso no projeto |
@@ -98,6 +118,7 @@ crud-clientes/
 │   ├── screenshots/                      # imagens usadas neste README
 │   └── roteiro-video-aula.md             # cronograma da videoaula explicando o código
 ├── .github/workflows/testes.yml          # testes automáticos no GitHub Actions
+├── render.yaml                           # configuração para publicar no Render
 ├── iniciar.bat                           # executa tudo com duplo clique (Windows)
 ├── LICENSE                               # licença MIT
 └── README.md
@@ -165,6 +186,7 @@ verificam todas as rotas, incluindo os casos de erro. Para testes manuais, use `
 
 | Sintoma | Causa | Solução |
 |---|---|---|
+| "Site inacessível" ao abrir `localhost:3001` pelo GitHub | O servidor não está rodando no seu computador; o GitHub não executa o sistema | Rode o `iniciar.bat` (ou `npm start`) e deixe a janela aberta, ou use a versão no Render. |
 | A tela de login não abre ou aparece outro sistema | Outro programa já usa a porta | Feche o outro programa ou troque `PORT=3001` por outra porta (ex.: `PORT=3002`) em `backend/.env`. O servidor e o `iniciar.bat` avisam quando a porta está ocupada. |
 | "Não foi possível conectar à API" | Servidor parado | Rode `npm start` na pasta `backend` (ou o `iniciar.bat`) e clique em **Tentar novamente**. |
 | Volta sempre para o login | Sessão expirada ou servidor reiniciado | Entre de novo; as sessões duram 8 horas e são apagadas ao reiniciar o servidor. |
