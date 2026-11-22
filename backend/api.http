@@ -1,0 +1,82 @@
+### Requisições para testar a API manualmente
+### (extensão REST Client do VS Code, ou copie para Postman/Insomnia)
+
+@raiz = http://localhost:3001
+@base = {{raiz}}/clientes
+@token = {{login.response.body.token}}
+
+### 1) Fazer login (execute primeiro: o token é usado nas demais requisições)
+# @name login
+POST {{raiz}}/auth/login
+Content-Type: application/json
+
+{
+  "usuario": "admin",
+  "senha": "admin123"
+}
+
+### Login com senha errada (espera 401)
+POST {{raiz}}/auth/login
+Content-Type: application/json
+
+{
+  "usuario": "admin",
+  "senha": "errada"
+}
+
+### Acesso sem token (espera 401)
+GET {{base}}
+
+### Listar todos os clientes
+GET {{base}}
+Authorization: Bearer {{token}}
+
+### Consultar um cliente específico
+GET {{base}}/1
+Authorization: Bearer {{token}}
+
+### Cadastrar um novo cliente
+POST {{base}}
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "nome": "Pedro Almeida",
+  "email": "pedro.almeida@email.com",
+  "telefone": "(44) 96666-4444"
+}
+
+### Cadastrar com campos obrigatórios vazios (espera 400)
+POST {{base}}
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "nome": "",
+  "email": ""
+}
+
+### Atualizar um cliente existente
+PUT {{base}}/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "nome": "Maria Oliveira Souza",
+  "email": "maria.oliveira@email.com",
+  "telefone": "(44) 99999-1111"
+}
+
+### Atualizar um cliente inexistente (espera 404)
+PUT {{base}}/9999
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "nome": "Inexistente",
+  "email": "inexistente@email.com"
+}
+
+### Excluir um cliente
+DELETE {{base}}/3
+Authorization: Bearer {{token}}

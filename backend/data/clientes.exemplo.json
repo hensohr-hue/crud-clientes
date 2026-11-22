@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "nome": "Maria Oliveira",
+    "email": "maria.oliveira@email.com",
+    "telefone": "(44) 99999-1111",
+    "criadoEm": "2026-10-20T13:00:00.000Z",
+    "atualizadoEm": "2026-10-20T13:00:00.000Z"
+  },
+  {
+    "id": 2,
+    "nome": "João Santos",
+    "email": "joao.santos@email.com",
+    "telefone": "(44) 98888-2222",
+    "criadoEm": "2026-10-21T14:30:00.000Z",
+    "atualizadoEm": "2026-10-21T14:30:00.000Z"
+  },
+  {
+    "id": 3,
+    "nome": "Ana Costa",
+    "email": "ana.costa@email.com",
+    "telefone": "(44) 97777-3333",
+    "criadoEm": "2026-10-22T09:15:00.000Z",
+    "atualizadoEm": "2026-10-22T09:15:00.000Z"
+  }
+]

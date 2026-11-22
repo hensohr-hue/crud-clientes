@@ -1,0 +1,20 @@
+# Dependências
+node_modules/
+
+# Configuração local (use backend/.env.example como modelo)
+.env
+
+# Dados reais da máquina (o repositório leva backend/data/clientes.exemplo.json)
+backend/data/clientes.json
+backend/data/usuarios.json
+
+# Documentos acadêmicos gerados (contêm RA do aluno; entregues pelo AVA)
+docs/*.docx
+docs/*.pdf
+
+# Sistema operacional / editores
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+*.log
