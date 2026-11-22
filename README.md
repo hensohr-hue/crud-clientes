@@ -21,7 +21,7 @@ HTTP com `fetch()`, trocando dados em **JSON**. Os registros ficam salvos no arq
 ## Início rápido
 
 ```bash
-git clone https://github.com/<seu-usuario>/crud-clientes.git
+git clone https://github.com/hensohr-hue/crud-clientes.git
 cd crud-clientes/backend
 npm install
 npm start
